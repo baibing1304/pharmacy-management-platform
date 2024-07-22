@@ -1,7 +1,6 @@
 package com.example.pharmacymanagement.service;
 
 import com.example.pharmacymanagement.model.Inventory;
-import com.example.pharmacymanagement.model.Medicine;
 import com.example.pharmacymanagement.model.Sale;
 import com.example.pharmacymanagement.repository.InventoryRepository;
 import com.example.pharmacymanagement.repository.MedicineRepository;
@@ -27,8 +26,11 @@ public class SaleService {
 
     @Autowired
     private InventoryRepository inventoryRepository;
+    //
+    //111
 
     @Transactional
+    // 这是一个记录销售的方法，参数包括药品ID、数量、总价和销售日期
     public Sale recordSale(Long medicineId, Integer quantity, BigDecimal totalPrice, LocalDate saleDate) {
         Optional<Inventory> inventory = inventoryRepository.findByMedicineId(medicineId);
         if (inventory.get().getQuantity() < quantity) {

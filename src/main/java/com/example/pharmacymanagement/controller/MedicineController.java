@@ -21,43 +21,5 @@ public class MedicineController {
     @Autowired
     private MedicineService medicineService;
 
-    @GetMapping
-    @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<List<Medicine>> getAllMedicines() {
-        List<Medicine> medicines = medicineService.getAllMedicines();
-        return ResponseEntity.ok(medicines);
-    }
 
-    @PostMapping
-    @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<Medicine> createMedicine(@Valid @RequestBody Medicine medicine) {
-        Medicine createdMedicine = medicineService.createMedicine(medicine);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdMedicine);
-    }
-
-    @GetMapping("/{id}")
-    @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<Medicine> getMedicine(@PathVariable @NotNull Long id) {
-        Medicine medicine = medicineService.getMedicineById(id);
-        return ResponseEntity.ok(medicine);
-    }
-
-    @PutMapping("/{id}")
-    @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<Medicine> updateMedicine(@PathVariable @NotNull Long id,
-                                                   @Valid @RequestBody Medicine medicine) {
-        Medicine updatedMedicine = medicineService.updateMedicine(id, medicine);
-        return ResponseEntity.ok(updatedMedicine);
-    }
-
-    /**
-     *
-     @DeleteMapping("/{id}")
-     @PreAuthorize("isAuthenticated()")
-     public ResponseEntity<String> deleteMedicine(@PathVariable @NotNull Long id) {
-     medicineService.deleteMedicine(id);
-     return ResponseEntity.ok("药品已成功删除");
-     */
-
-    }
 }
